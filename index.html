@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="dashboardApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+  </head>
+  <body>
+
+    <header class="container page-header text-center">
+      <h1 class="page-title">Dashboard Glambox</h1>
+    </header>
+
+    <main class="container" ng-controller="chartsController as chartsCtrl">
+
+      <div class="row info-block">
+
+        <h2 class="text-center"><strong>{{chartsCtrl.pendingSubscriptionsInfo.title}}</strong></h2>
+        <div class="col-md-offset-4 col-md-4" ng-repeat="chart in chartsCtrl.pendingSubscriptionsInfo.charts">
+            <div class="chart-wrapper">
+              <div class="panel panel-default">
+                <h3 class="panel-heading text-center">{{chart.name}}</h3>
+                <div class="panel-body">
+                  <canvas id="chart-doughnut" class="chart chart-doughnut"
+                    chart-data="chart.data" chart-labels="chart.labels" chart-options="chart.options">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="row info-block">
+
+        <h2 class="text-center"><strong>{{chartsCtrl.keptSubscriptionsInfo.title}}</strong></h2>
+        <div class="col-md-4" ng-repeat="chart in chartsCtrl.keptSubscriptionsInfo.charts">
+            <div class="chart-wrapper">
+              <div class="panel panel-default">
+                <h3 class="panel-heading text-center">{{chart.name}}</h3>
+                <div class="panel-body">
+                  <canvas id="chart-doughnut" class="chart chart-doughnut"
+                    chart-data="chart.data" chart-labels="chart.labels" chart-options="chart.options">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="row info-block">
+
+        <h2 class="text-center"><strong>{{chartsCtrl.canceledSubscriptionsInfo.title}}</strong></h2>
+        <div class="col-md-6" ng-repeat="chart in chartsCtrl.canceledSubscriptionsInfo.charts">
+          <div class="chart-wrapper">
+            <div class="panel panel-default">
+              <h3 class="panel-heading text-center">{{chart.name}}</h3>
+              <div class="panel-body">
+                <canvas id="chart-pie" class="chart chart-pie"
+                  chart-data="chart.data" chart-labels="chart.labels" chart-options="chart.options">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row info-block">
+
+        <h2 class="text-center"><strong>{{chartsCtrl.newSubscriptionsInfo.title}}</strong></h2>
+        <div class="col-md-12" ng-repeat="chart in chartsCtrl.newSubscriptionsInfo.charts">
+          <div class="chart-wrapper">
+            <div class="panel panel-default">
+              <h3 class="panel-heading text-center">{{chart.name}}</h3>
+              <div class="panel-body">
+                <canvas id="polar-area" class="chart chart-polar-area"
+                  chart-data="chart.data" chart-labels="chart.labels" chart-options="chart.options">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- Bower components -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.min.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="scripts/app.module.js"></script>
+    <script src="scripts/factories/infogroup-builder.js"></script>
+    <script src="scripts/providers/data-provider.js"></script>
+    <script src="scripts/controllers/chart-controller.js"></script>
+  </body>
+</html>
