@@ -39,10 +39,8 @@
       </div>
     </header>
 
-    <main class="container">
-
+    <section class="container">
       <div class="row info-block">
-
         <h2 class="text-center"><strong>{{chartsCtrl.pendingSubscriptionsInfo.title}}</strong></h2>
         <div class="col-md-offset-4 col-md-4" ng-repeat="chart in chartsCtrl.pendingSubscriptionsInfo.charts">
             <div class="chart-wrapper">
@@ -61,11 +59,11 @@
               </div>
             </div>
         </div>
-
       </div>
+    </section>
 
+    <section class="container">
       <div class="row info-block">
-
         <h2 class="text-center"><strong>{{chartsCtrl.keptSubscriptionsInfo.title}}</strong></h2>
         <div class="col-md-4" ng-repeat="chart in chartsCtrl.keptSubscriptionsInfo.charts">
             <div class="chart-wrapper">
@@ -85,7 +83,9 @@
             </div>
         </div>
       </div>
+    </section>
 
+    <section class="container">
       <div class="row info-block">
 
         <h2 class="text-center"><strong>{{chartsCtrl.canceledSubscriptionsInfo.title}}</strong></h2>
@@ -109,8 +109,10 @@
 
       </div>
 
-      <div class="row info-block">
+    </section>
 
+    <section class="container">
+      <div class="row info-block">
         <h2 class="text-center"><strong>{{chartsCtrl.newSubscriptionsInfo.title}}</strong></h2>
         <div class="col-md-12" ng-repeat="chart in chartsCtrl.newSubscriptionsInfo.charts">
           <div class="chart-wrapper">
@@ -129,10 +131,8 @@
             </div>
           </div>
         </div>
-
       </div>
-
-    </main>
+    </section>
 
     <footer class="container">
 
@@ -145,7 +145,7 @@
           <a href="https://medium.com/@kaioamaral" target="_blank"><i class="icon fa fa-medium" aria-hidden="true"></i></a>
         </div>
         <div class="col-sm-12 col-md-12">
-            <a href="kaioamaral.github.io" style="color:black">
+            <a href="https://kaioamaral.github.io" style="color:black">
               <span class="fa fa-code"></span> with <span class="fa fa-heart-o"></span> by Kaio Amaral
             </a>
         </div>
