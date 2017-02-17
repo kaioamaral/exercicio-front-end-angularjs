@@ -1,11 +1,11 @@
-angular.module('dashboardApp')
-.factory('infoGroupBuilder', function() {
+angular.module('dashboardApp').factory('infoGroupBuilder', function() {
 
   return {
 
     buildFor: function(group) {
 
       var infoGroup = {};
+      var summary = { total : 0, totalInMoney: 0 };
 
       infoGroup.group = group;
       infoGroup.title = infoGroup.group.group.description;
@@ -14,25 +14,35 @@ angular.module('dashboardApp')
       if (infoGroup.group.children.length > 0) {
         infoGroup.group.children.forEach(function(c) {
 
-          var chart = {};
+          var chart = { name: c.group.description, labels: [], data: [], totalInMoney: 0 };
 
-          chart.name = c.group.description;
-          chart.labels = c.subs.map(function(sub) { return sub.subscriptionName; });
-          chart.data = c.subs.map(function(sub) { return sub.subscriberCount; });
+          c.subs.forEach(function(sub) {
+            chart.data.push(sub.subscriberCount);
+            chart.labels.push(sub.subscriptionName);
+            chart.totalInMoney += (sub.subscriberCount * sub.subscriptionPrice);
+            summary.total += sub.subscriberCount;
+          });
 
           infoGroup.charts.push(chart);
 
         });
       } else {
-        var chart = {};
-        console.log(group);
-        chart.name = group.group.name;
-        chart.labels = group.subs.map(function(sub) { return sub.subscriptionName; });
-        chart.data = group.subs.map(function(sub) { return sub.subscriberCount; });
+
+        var chart = { name: group.group.name, labels: [], data: [], totalInMoney: 0 };
+
+        group.subs.forEach(function(sub) {
+          chart.data.push(sub.subscriberCount);
+          chart.labels.push(sub.subscriptionName);
+          chart.totalInMoney += (sub.subscriberCount * sub.subscriptionPrice);
+          summary.total += sub.subscriberCount;
+        });
+
         infoGroup.charts.push(chart);
+
       }
 
-
+      infoGroup.name = infoGroup.group.group.name;
+      infoGroup.summary = summary;
       return infoGroup;
 
     }
